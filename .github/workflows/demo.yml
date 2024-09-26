@@ -31,7 +31,6 @@ jobs:
         with:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-
       - name: Install dependencies
         run: npm ci
       - name: Build website
@@ -52,4 +51,4 @@ jobs:
       - name: output contant
         run: ls 
       - name: Deploy
-        run: echo "Deploying."
+        run: echo "Deployed"
