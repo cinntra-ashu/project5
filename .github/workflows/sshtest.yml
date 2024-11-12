@@ -22,7 +22,7 @@ jobs:
           chmod 600 ssh_key
 
           # Try to establish an SSH connection and run a simple command
-          ssh -o StrictHostKeyChecking=no -i ssh_key -p 56767 root@103.234.187.197 "echo 'SSH connection successful!'"
+          ssh -o StrictHostKeyChecking=no -i ssh_key -p 5726 root@103.234.187.197 "echo 'SSH connection successful!'"
 
           # Clean up by removing the SSH key
           rm -f ssh_key
