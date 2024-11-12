@@ -1,0 +1,28 @@
+name: Test SSH Connection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-connection:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Attempt SSH connection
+      - name: Test SSH connection
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          # Save the private key from the secret to a file
+          echo "$SSH_PRIVATE_KEY" > ssh_key
+          chmod 600 ssh_key
+
+          # Try to establish an SSH connection and run a simple command
+          ssh -o StrictHostKeyChecking=no -i ssh_key -p 56767 root@103.234.187.197 "echo 'SSH connection successful!'"
+
+          # Clean up by removing the SSH key
+          rm -f ssh_key
